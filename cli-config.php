@@ -34,7 +34,7 @@ $config->setMetadataCacheImpl($cache);
 
 $connectionOptions = array(
     'driver' => 'pdo_mysql',
-    'user' => 'skel',
+    'user' => 'root',
     'password' => 'skel',
     'dbname' => 'skel',
     'host' => '127.0.0.1'

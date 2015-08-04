@@ -6,7 +6,7 @@ use JMS\Serializer\Annotation\Type;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="User")
+ * @ORM\Table(name="users")
  */
 class User extends Entity
 {
@@ -30,7 +30,7 @@ class User extends Entity
      * @var string
      */
     private $password;
-    
+
     /**
      * @ORM\Column(type="boolean", nullable=true)
      * @Type("boolean")
@@ -38,21 +38,28 @@ class User extends Entity
      */
     private $admin;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Profile", inversedBy="profileCollection", cascade={"persist", "merge", "refresh"})
+     *
+     * @var Company
+     */
+    protected $profile;
+
     public function getName()
     {
         return $this->name;
     }
-    
+
     public function setName($name)
     {
         return $this->name = filter_var($name, FILTER_SANITIZE_STRING);
     }
-        
+
     public function getEmail()
     {
         return $this->email;
     }
-    
+
     public function setEmail($email)
     {
     	if (FALSE === filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -60,12 +67,12 @@ class User extends Entity
     	}
         return $this->email = $email;
     }
-    
+
     public function getPassword()
     {
         return $this->password;
     }
-    
+
     public function setPassword($password)
     {
 
@@ -76,9 +83,19 @@ class User extends Entity
     {
         return $this->admin;
     }
-    
+
     public function setAdmin($admin)
     {
         return $this->admin = $admin;
+    }
+
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+
+    public function setProfile($profile)
+    {
+        return $this->profile = $profile;
     }
 }

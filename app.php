@@ -20,7 +20,7 @@ $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/views',
 ));
-    
+
 $app->register(new Silex\Provider\SwiftmailerServiceProvider());
 
 $app['swiftmailer.options'] = array(
@@ -56,7 +56,7 @@ $app->error(function (\Exception $e, $code) use($app) {
     }
     return new Response($message, $code);
 });
-    
+
 $app['sortCreated'] = $app->protect(function ($a, $b) {
     if ($a->getCreated() == $b->getCreated()) {
         return 0;
@@ -89,8 +89,8 @@ $app->register(new DoctrineServiceProvider, array(
         'driver' => 'pdo_mysql',
         'host' => 'localhost',
         'port' => '3306',
-        'user' => 'skel',
-        'password' => 'skel',
+        'user' => 'root',
+        'password' => '123',
         'dbname' => 'skel'
     )
 ));
